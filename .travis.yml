@@ -21,5 +21,21 @@ after_success:
   - docker push judgejab/multi-server
   - docker push judgejab/multi-worker
 
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: arn:aws:s3:::elasticbeanstalk-us-east-1-190947864732
+  bucket_path: docker_multi
+  on: 
+    branch: master
+  access_key_id: 
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
+
+
+
 
   
